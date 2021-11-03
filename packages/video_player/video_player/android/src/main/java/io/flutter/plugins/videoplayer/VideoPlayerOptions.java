@@ -4,6 +4,8 @@
 
 package io.flutter.plugins.videoplayer;
 
-class VideoPlayerOptions {
+public class VideoPlayerOptions {
+  public static boolean hlsAllowChunklessPreparation = false;
+
   public boolean mixWithOthers;
 }
