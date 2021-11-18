@@ -1,3 +1,11 @@
+## 1.5.0
+
+* Added `onUrlChanged` callback to platform callback handler.
+
+## 1.4.0
+
+* Added `loadFile` and `loadHtml` interface methods.
+
 ## 1.3.0
 
 * Added `loadRequest` method to platform interface.

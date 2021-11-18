@@ -53,6 +53,9 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
       case 'onPageStarted':
         _platformCallbacksHandler.onPageStarted(call.arguments['url']!);
         return null;
+      case 'onUrlChanged':
+        _platformCallbacksHandler.onUrlChanged(call.arguments['url']!);
+        return null;
       case 'onWebResourceError':
         _platformCallbacksHandler.onWebResourceError(
           WebResourceError(
@@ -77,6 +80,24 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
     throw MissingPluginException(
       '${call.method} was invoked but has no handler',
     );
+  }
+
+  @override
+  Future<void> loadFile(String absoluteFilePath) async {
+    assert(absoluteFilePath != null);
+    return _channel.invokeMethod<void>('loadFile', absoluteFilePath);
+  }
+
+  @override
+  Future<void> loadHtmlString(
+    String html, {
+    String? baseUrl,
+  }) async {
+    assert(html != null);
+    return _channel.invokeMethod<void>('loadHtmlString', <String, dynamic>{
+      'html': html,
+      'baseUrl': baseUrl,
+    });
   }
 
   @override
